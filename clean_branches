@@ -1,0 +1,6 @@
+#!/bin/bash
+# Deletes all local branches except for dev and master
+
+git checkout dev
+git branch | grep -v 'master\|dev' | xargs git branch -D
+git branch
