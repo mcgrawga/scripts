@@ -1,0 +1,9 @@
+#!/bin/bash
+echo '************'
+echo '** LOCAL  **'
+echo '************'
+npm list $1 --depth=0
+echo '************'
+echo '** GLOBAL **'
+echo '************'
+npm list -g $1 --depth=0

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+echo "Have you updated the version number in package.json file?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) 	
+				echo 'Ok, continuing with push.';
+				exit;;
+        No ) 
+				echo "Ok, let's do that now."
+				echo "What kind of update did you make?"
+				select bumpType in "Major" "Minor" "Patch"; do
+					case $bumpType in
+						Major ) 	
+								echo 'You selected Major.';
+								exit;;
+						Minor ) 
+								echo 'You selected Minor.';
+								exit;;
+						Patch ) 
+								echo 'You selected Patch.';
+								exit;;
+					esac
+				done
+    esac
+done
