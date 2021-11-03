@@ -1,0 +1,13 @@
+#!/bin/bash
+# Restarts the admin api in the CI nomad environment.
+
+# Manual steps
+# 1) export NOMAD_ADDR=http://nomad.ci.albacore.pro:4646/
+# 2) printenv | grep NOMAD
+# 3) nomad status ci-adev_alba0
+# 4) nomad alloc restart <allocaction id>
+
+export NOMAD_ADDR=http://nomad.ci.albacore.pro:4646/
+nomad status ci-adev_alba0 | awk '$3 == "corepro-adminapi" {print $1}' | xargs nomad alloc restart
+sleep 5
+nomad status ci-adev_alba0

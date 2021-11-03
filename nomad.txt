@@ -1,0 +1,15 @@
+For reference, nomad has a cli tool. I'm sure theres a rest api for it also. But nomad runs jobs, 
+which have tasks, and an instance of a task is an allocation. You have to download the cli, 
+set NOMAD_ADDR environment variable to point to the CI nomad url, run nomad status ci-adev_alba0, 
+find the adminapi allocation id, then nomad alloc restart <allocaction id>
+
+export NOMAD_ADDR=http://nomad.ci.albacore.pro:4646/
+printenv | grep NOMAD
+nomad status ci-adev_alba0
+nomad alloc restart <allocaction id>
+nomad status ci-adev_alba0 | awk '$3 == "corepro-adminapi" {print $1}' | xargs nomad alloc restart
+
+
+To get hcl file:
+https://portal.azure.com/#blade/Microsoft_Azure_Storage/ContainerMenuBlade/overview/storageAccountId/%2Fsubscriptions%2Fd60bb0c6-d871-4d1c-bb52-95b0e6589ac1%2FresourceGroups%2Falba-PACKER%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Falbapkr/path/builds/etag/%220x8D730A119BADF4F%22/defaultEncryptionScope/%24account-encryption-key/denyEncryptionScopeOverride//defaultId//publicAccessVal/None
+/scripts/ci/deploy/nomad/ci-adev_alba0.hcl
