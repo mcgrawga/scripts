@@ -2,6 +2,6 @@
 # Deletes all local branches except for dev and master
 
 git checkout dev
-# git branch | grep -xv '  master\|* dev' | xargs git branch -D
-git branch | grep -xv '  master\|* dev\|  API_SWAGGER_VERSIONING\|  user_migration' | xargs git branch -D
+git branch | grep -xv '  master\|* dev' | xargs git branch -D
+# git branch | grep -xv '  master\|* dev\|  API_SWAGGER_VERSIONING\|  user_migration' | xargs git branch -D
 git branch
